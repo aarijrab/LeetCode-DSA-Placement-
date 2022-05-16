@@ -1,0 +1,48 @@
+Given a matrix of size r*c. Traverse the matrix in spiral form.
+
+Example 1:
+
+Input:
+r = 4, c = 4
+matrix[][] = {{1, 2, 3, 4},
+           {5, 6, 7, 8},
+           {9, 10, 11, 12},
+           {13, 14, 15,16}}
+Output: 
+1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
+
+
+
+Code:---------------------
+
+vector<int> spirallyTraverse(vector<vector<int> > matrix, int r, int c) 
+    {
+        // code here 
+        int startRow=0;
+        int endRow=r-1;
+        int startColumn=0;
+        int endColumn=c-1;
+        vector<int>ans;
+        
+        while(startRow<=endRow && startColumn<=endColumn) {
+            for(int i=startRow;i<=endRow;i++) {
+             ans.push_back(matrix[startRow][i]);
+            }
+            startRow++;
+            for(int i=startRow;i<=endRow;i++) {
+                ans.push_back(matrix[i][endColumn]);
+            }
+            endColumn--;
+            if(startRow<=endRow) {
+                for(int i=endColumn;i>=startColumn;i--) {
+                    ans.push_back(matrix[endRow][i]);
+                }
+                endRow--;
+                for(int i=endRow;i>=startRow;i--) {
+                    ans.push_back(matrix[i][startColumn]);
+                }
+                startColumn++;
+            }
+        }
+        return ans;
+    }
